@@ -57,7 +57,9 @@ class MainActivity : AppCompatActivity() {
             picture_linear_layout.addView(createTextView(path[path.size - 1], index))
         }
 
+/*
 
+ */
         super.onActivityResult(requestCode, resultCode, data)
     }
 }
