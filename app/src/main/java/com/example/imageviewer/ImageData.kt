@@ -12,12 +12,12 @@ class ImageData(fullPhotoUri: Uri?) : Serializable {
 
 
 
-    val fileUri: Uri ?
+    var fileUri: Uri ?
         get() = Uri.parse(fileUriString)
     //gets raw URI string from FileUriStrong designates it a URI jss
 
     init {
-
+        this.fileUri = fullPhotoUri
         this.fileUriString = fullPhotoUri.toString()
         //not going to pretend to understand in depth why this works but looks like a regular expression
         //to snag the file name off the end of URI -- one day I'll have magic powers if i keep trying

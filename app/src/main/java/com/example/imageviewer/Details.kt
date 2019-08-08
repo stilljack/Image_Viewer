@@ -14,9 +14,10 @@ class details (imageData: ImageData) : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         setSupportActionBar(toolbar)
-        val returnedData = intent.getSerializableExtra("object") as ImageData
+
+        val returnedData = intent.getSerializableExtra("extra_object" as ImageData)
         for (i in 0 .. MainActivity.imageList.size) {
-            if (imageList[i].fileUriString == returnedData.fileUriString) {
+            if (ImageData(imageList[i].) == returnedData.) {
                 imageList[i] = returnedData
             }
         }

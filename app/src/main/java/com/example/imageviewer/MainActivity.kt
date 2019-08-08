@@ -1,16 +1,15 @@
 package com.example.imageviewer
 
+import android.content.Context
 import android.content.Intent
-import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.telecom.Call
 import android.util.Log
 import android.widget.TextView
-import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.ArrayList
-import java.util.jar.Attributes
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         internal const val REQUEST_IMAGE_GET = 1
         internal const val DETAIL_IMAGE_REQUEST = 2
         var imageList: ArrayList<ImageData> = ArrayList()
+        var index1 = 0
+
     }
 
 
@@ -39,21 +40,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+ /*   fun sendDetails(index: Int, img: ImageData ): Intent {
+        val intent = Intent(this, ImageData::class.java)
+        intent.putExtra(DETAIL_IMAGE_REQUEST, )
+        return intent
+    }*/
     fun createTextView(string: String?, int: Int): TextView {
         val view = TextView(this)
-
+     view.tag = imageList[int]
         view.text = string
         view.textSize = 24f
-        view.tag = string!!.toUri()
+
         view.setOnClickListener {
-            //            val image =
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivityForResult(intent, DETAIL_IMAGE_REQUEST)
+
+            val intent = Intent(this, ImageData::class.java)
+            intent.putExtra("extra_object", imageList[int])
+            startActivity(intent)
             }
-        }
+
         return view
     }
 
@@ -62,7 +66,8 @@ class MainActivity : AppCompatActivity() {
         val fullPhotoUri: Uri? = data!!.data
         if (requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK) {
             imageList.add(ImageData(fullPhotoUri))
-            picture_linear_layout.addView(createTextView(ImageData(fullPhotoUri).name, index)
+            picture_linear_layout.addView(createTextView(ImageData(fullPhotoUri).name, index1++)
+
             )
         } else if (requestCode == DETAIL_IMAGE_REQUEST && resultCode == RESULT_OK) {
             // Make sure the request was successful
