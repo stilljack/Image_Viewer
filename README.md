@@ -1,4 +1,3 @@
-[ ]
-[x]
-
-is not interactive, is markdown
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
