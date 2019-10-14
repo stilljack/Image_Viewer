@@ -1,3 +1,3 @@
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
+- [x] is not mutable
+- [x] is markdown
+- [ ] yus
